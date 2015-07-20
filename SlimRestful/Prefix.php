@@ -13,6 +13,10 @@ class Prefix{
 		$this->resources = array();
 	}
 	
+	public function getRoutePrefix(){
+		return $this->routePrefix;
+	}
+	
 	public function setSlimRestfulInstance($srInstance){
 		$this->slimRestfulInstance = $srInstance;
 	}
