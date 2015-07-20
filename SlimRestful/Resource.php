@@ -2,7 +2,7 @@
 	
 namespace SlimRestful;
 
-abstract class SlimRestfulResource{
+abstract class Resource{
 	
 	private $conditions;
 	private $middlewares;
@@ -18,6 +18,7 @@ abstract class SlimRestfulResource{
 	
 	public function addCondition($field, $condition){
 		$this->conditions[$field] = $condition;
+		return $this;
 	}
 	
 	public function setConditions($conditions){
@@ -30,6 +31,7 @@ abstract class SlimRestfulResource{
 	
 	public function addMiddleware($middleware){
 		$this->middlewares[] = $middleware;
+		return $this;
 	}
 	
 	public function setMiddlewares($middlewares){
