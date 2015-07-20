@@ -1,6 +1,8 @@
 {
     "name": "alisonbnt/slim-restful",
-    "description": "Slim PHP micro framework and Python Flask-RESTful extension ideias put together",
+    "type": "library",
+    "description": "Slim Framework based library for RESTful APIs over classes",
+    "homepage": "http://github.com/alisonbnt/slim-restful",
     "license": "MIT",
     "authors": [
         {
@@ -8,8 +10,10 @@
             "email": "alisonbnt@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "slim/slim": "2.6.*"
+    },
+    "autoload": {
+        "psr-0": { "SlimRestful": "." }
     }
 }
