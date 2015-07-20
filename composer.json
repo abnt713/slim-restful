@@ -1,6 +1,15 @@
 {
+    "name": "alisonbnt/slim-restful",
+    "description": "Slim PHP micro framework and Python Flask-RESTful extension ideias put together",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alison Bento",
+            "email": "alisonbnt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
     "require": {
-        "slim/slim": "^2.6",
-        "j4mie/idiorm": "^1.5"
+        "slim/slim": "2.6.*"
     }
 }
