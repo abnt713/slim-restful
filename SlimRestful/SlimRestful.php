@@ -13,7 +13,7 @@ class SlimRestful{
 	}
 	
 	public function getSlimApp(){
-		return $this->$app;
+		return $this->app;
 	}
 	
 	public function getPrefixes(){

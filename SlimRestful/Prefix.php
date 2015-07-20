@@ -21,9 +21,9 @@ class Prefix{
 		$this->slimRestfulInstance = $srInstance;
 	}
 	
-	public function addResource($route, SlimRestfulResource $resource){
+	public function addResource($route, Resource $resource){
 		$this->resources[$route] = $resource;
-		return $this;
+		return $resource;
 	}
 	
 	public function removeResource($route){

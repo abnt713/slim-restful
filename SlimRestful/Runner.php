@@ -17,8 +17,10 @@ class Runner{
 		$slimApp = $srInstance->getSlimApp();
 		$allPrefixes = $srInstance->getPrefixes();
 		foreach($allPrefixes as $prefix){
-			$this->handlePrefix($app, $prefix);
+			$this->handlePrefix($slimApp, $prefix);
 		}
+		
+		$slimApp->run();
 	}
 	
 	private function handlePrefix($app, $prefix){
