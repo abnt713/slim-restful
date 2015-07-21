@@ -16,6 +16,10 @@ class SlimRestful{
 		return $this->app;
 	}
 
+	public function getRawPrefixes(){
+		return $this->prefixes;
+	}
+
 	public function getPrefixes(){
 		return $this->prefixes->getElements();
 	}
@@ -27,17 +31,16 @@ class SlimRestful{
 		return $prefix;
 	}
 
+	public function getPrefix($routeIndex){
+		return $this->prefixes->getElement($routeIndex);
+	}
+
 	public function addPrefix(Prefix $prefix){
 		$this->addSRPrefix($prefix);
 	}
 
 	public function removePrefix($routePrefix){
-		if(isset($this->prefixes[$routePrefix])){
-			unset($this->prefixes[$routePrefix]);
-			return true;
-		}else{
-			return false;
-		}
+		$this->prefixes->removeElement($routePrefix);
 	}
 
 	public function run(){
@@ -67,6 +70,9 @@ class SlimRestful{
 		$this->prefixes->removeElement($oldRoutePrefix);
 		$this->prefixes->addSimpleElement($newRoutePrefix, $prefix);
 		$this->prefixes->updateOrderIndex($oldRoutePrefix, $newRoutePrefix);
+		// echo '<pre>';
+		// var_dump($this->prefixes->getElements());
+		// echo '</pre>';
 	}
 
 }
