@@ -3,55 +3,76 @@
 namespace SlimRestful;
 
 class SlimRestful{
-	
+
 	private $app;
 	private $prefixes;
-	
+
 	public function __construct(\Slim\Slim $app){
 		$this->app = $app;
-		$this->prefixes = array();
+		$this->prefixes = new \SlimRestful\Utils\OrderedArray();
 	}
-	
+
 	public function getSlimApp(){
 		return $this->app;
 	}
-	
-	public function getPrefixes(){
+
+	public function getRawPrefixes(){
 		return $this->prefixes;
 	}
-	
+
+	public function getPrefixes(){
+		return $this->prefixes->getElements();
+	}
+
 	public function createPrefix($routePrefix){
 		$prefix = new Prefix($routePrefix);
 		$this->addSRPrefix($prefix);
-		
+
 		return $prefix;
 	}
-	
+
+	public function getPrefix($routeIndex){
+		return $this->prefixes->getElement($routeIndex);
+	}
+
 	public function addPrefix(Prefix $prefix){
 		$this->addSRPrefix($prefix);
 	}
-	
+
 	public function removePrefix($routePrefix){
-		if(isset($this->prefixes[$routePrefix])){
-			unset($this->prefixes[$routePrefix]);
-			return true;
-		}else{
-			return false;
-		}
+		$this->prefixes->removeElement($routePrefix);
 	}
-	
+
 	public function run(){
 		$runner = new Runner();
 		$runner->run($this);
 	}
-	
+
+	public function callLoader($loader, $params = array()){
+		$loader->load($this, $params);
+	}
+
 	private function addSRPrefix(Prefix $prefix){
-		$this->prefixes[$prefix->getRoutePrefix()] = $prefix;
+		$this->prefixes->addElement($prefix->getRoutePrefix(), $prefix);
 		$prefix->setSlimRestfulInstance($this);
 	}
-	
-	public function changeRoutePrefix($oldRoutePrefix, $newRoutePrefix, $changePrefixInstance = false){
-		/* I'll think about this later :P */
+
+	public function changeRoutePrefix($oldRoutePrefix, $newRoutePrefix, $updatePrefixInstance = true){
+		$prefix = $this->prefixes->getElement($oldRoutePrefix);
+		if(is_null($prefix)){
+			return false;
+		}
+		
+		if($updatePrefixInstance){
+			$prefix->setRoutePrefix($newRoutePrefix, false);
+		}
+		
+		$this->prefixes->removeElement($oldRoutePrefix);
+		$this->prefixes->addSimpleElement($newRoutePrefix, $prefix);
+		$this->prefixes->updateOrderIndex($oldRoutePrefix, $newRoutePrefix);
+		// echo '<pre>';
+		// var_dump($this->prefixes->getElements());
+		// echo '</pre>';
 	}
-	
+
 }

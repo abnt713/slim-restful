@@ -38,12 +38,11 @@ class Prefix{
 		return $this->resources;
 	}
 	
-	public function setRoutePrefix($routePrefix){
-		/*
-		I'll think about this later :P
-		$this->slimRestfulInstance->changeRoutePrefix($this->routePrefix, $routePrefix);
+	public function setRoutePrefix($routePrefix, $updateSlimRestfulInstance = true){
+		if($updateSlimRestfulInstance){
+			$this->slimRestfulInstance->changeRoutePrefix($this->routePrefix, $routePrefix, false);	
+		}
 		$this->routePrefix = $routePrefix;
-		*/
 	}
 	
 }
