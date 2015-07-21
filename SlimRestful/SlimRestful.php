@@ -17,7 +17,7 @@ class SlimRestful{
 	}
 
 	public function getPrefixes(){
-		return $this->prefixes->getElements;
+		return $this->prefixes->getElements();
 	}
 
 	public function createPrefix($routePrefix){
