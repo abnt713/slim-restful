@@ -16,6 +16,10 @@ class OrderedArray{
         return $this->elements;
     }
     
+    public function getOrder(){
+        return $this->order;
+    }
+    
     public function getElement($index){
         return (isset($this->elements[$index]) ? $this->elements[$index] : null);
     }
@@ -26,12 +30,8 @@ class OrderedArray{
     }
     
     public function updateOrderIndex($oldOrderIndex, $newOrderIndex){
-        foreach($this->order as $i => $index){
-            if($index == $oldOrderIndex){
-                $order[$i] = $newOrderIndex;
-                return;
-            }
-        }
+        $i = $this->getOrderIndex($oldOrderIndex);
+        $this->order[$i] = $newOrderIndex;
     }
     
     public function addSimpleElement($index, $element){
@@ -39,6 +39,15 @@ class OrderedArray{
     }
     
     public function removeElement($index){
+        // $i = $this->getOrderIndex($index);
         unset($this->elements[$index]);
+    }
+    
+    private function getOrderIndex($routeIndex){
+        foreach($this->order as $i => $index){
+            if($index == $routeIndex){
+                return $i;
+            }
+        }
     }
 }

@@ -15,9 +15,13 @@ class Runner{
 	
 	public function run($srInstance){
 		$slimApp = $srInstance->getSlimApp();
-		$allPrefixes = $srInstance->getPrefixes();
-		foreach($allPrefixes as $prefix){
-			$this->handlePrefix($slimApp, $prefix);
+		$orderedPrefixes = $srInstance->getRawPrefixes();
+		$order = $orderedPrefixes->getOrder();
+		foreach($order as $routePrefix){
+			$prefix = $orderedPrefixes->getElement($routePrefix);
+			if(!is_null($prefix)){
+				$this->handlePrefix($slimApp, $prefix);
+			}
 		}
 		
 		$slimApp->run();
