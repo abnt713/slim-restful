@@ -43,6 +43,15 @@ class SlimRestful{
 		$this->prefixes->removeElement($routePrefix);
 	}
 
+	public function getPrefixedResource($routePrefix, $route){
+		$prefix = $this->prefixes->getElement($routePrefix);
+		if(is_null($prefix)){
+			return null;
+		}
+		
+		return $prefix->getResource($route);
+	}
+
 	public function run(){
 		$runner = new Runner();
 		$runner->run($this);

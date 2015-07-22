@@ -4,12 +4,40 @@ namespace SlimRestful;
 
 abstract class Resource{
 	
+	private $prefix;
+	private $route;
 	private $conditions;
 	private $middlewares;
 	
 	public function __construct(){
+		$this->prefix = null;
+		$this->route = null;
 		$this->conditions = array();
 		$this->middlewares = array();
+	}
+	
+	public function setPrefix($prefix){
+		$this->prefix = $prefix;
+	}
+	
+	public function setRoute($route){
+		$this->route = $route;
+	}
+	
+	public function getRoute(){
+		return $this->route;
+	}
+	
+	public function getApp(){
+		return $this->getApi()->getSlimApp();
+	}
+	
+	public function getApi(){
+		return $this->getPrefix()->getSlimRestfulInstance();
+	}
+	
+	public function getPrefix(){
+		return $this->prefix;
 	}
 	
 	public function getConditions(){

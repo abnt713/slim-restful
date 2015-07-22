@@ -23,7 +23,13 @@ class Prefix{
 		$this->slimRestfulInstance = $srInstance;
 	}
 	
+	public function getSlimRestfulInstance(){
+		return $this->slimRestfulInstance;
+	}
+	
 	public function addResource($route, Resource $resource){
+		$resource->setRoute($route);
+		$resource->setPrefix($this);
 		$this->resources[$route] = $resource;
 		return $resource;
 	}
