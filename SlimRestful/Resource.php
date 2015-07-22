@@ -18,10 +18,12 @@ abstract class Resource{
 	
 	public function setPrefix($prefix){
 		$this->prefix = $prefix;
+		return $this;
 	}
 	
 	public function setRoute($route){
 		$this->route = $route;
+		return $this;
 	}
 	
 	public function getRoute(){
@@ -51,6 +53,7 @@ abstract class Resource{
 	
 	public function setConditions($conditions){
 		$this->conditions = $conditions;
+		return $this;
 	}
 	
 	public function getMiddlewares(){
@@ -65,10 +68,12 @@ abstract class Resource{
 	public function mergeMiddlewares($middlewares){
 		$merged = array_merge($this->middlewares, $middlewares);
 		$this->middlewares = $merged;
+		return $this;
 	}
 	
 	public function setMiddlewares($middlewares){
 		$this->middlewares = $middlewares;
+		return $this;
 	}
 	
 }

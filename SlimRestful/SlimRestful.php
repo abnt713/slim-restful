@@ -37,10 +37,12 @@ class SlimRestful{
 
 	public function addPrefix(Prefix $prefix){
 		$this->addSRPrefix($prefix);
+		return $this;
 	}
 
 	public function removePrefix($routePrefix){
 		$this->prefixes->removeElement($routePrefix);
+		return $this;
 	}
 
 	public function getPrefixedResource($routePrefix, $route){
@@ -59,6 +61,7 @@ class SlimRestful{
 
 	public function callLoader($loader, $params = array()){
 		$loader->load($this, $params);
+		return $this;
 	}
 
 	private function addSRPrefix(Prefix $prefix){
@@ -79,9 +82,7 @@ class SlimRestful{
 		$this->prefixes->removeElement($oldRoutePrefix);
 		$this->prefixes->addSimpleElement($newRoutePrefix, $prefix);
 		$this->prefixes->updateOrderIndex($oldRoutePrefix, $newRoutePrefix);
-		// echo '<pre>';
-		// var_dump($this->prefixes->getElements());
-		// echo '</pre>';
+		return $this;
 	}
 
 }

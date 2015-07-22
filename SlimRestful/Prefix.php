@@ -21,6 +21,7 @@ class Prefix{
 	
 	public function setSlimRestfulInstance($srInstance){
 		$this->slimRestfulInstance = $srInstance;
+		return $this;
 	}
 	
 	public function getSlimRestfulInstance(){
@@ -36,10 +37,12 @@ class Prefix{
 	
 	public function removeResource($route){
 		unset($this->resources[$route]);
+		return $this;
 	}
 	
 	public function addMiddleware($middleware){
 		$this->middlewares[] = $middleware;
+		return $this;
 	}
 	
 	public function preRun(){
@@ -61,6 +64,7 @@ class Prefix{
 			$this->slimRestfulInstance->changeRoutePrefix($this->routePrefix, $routePrefix, false);	
 		}
 		$this->routePrefix = $routePrefix;
+		return $this;
 	}
 	
 }
