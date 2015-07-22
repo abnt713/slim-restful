@@ -7,10 +7,12 @@ class Prefix{
 	private $slimRestfulInstance;
 	private $routePrefix;
 	private $resources;
+	private $middlewares;
 	
 	public function __construct($routePrefix){
 		$this->routePrefix = $routePrefix;
 		$this->resources = array();
+		$this->middlewares = array();
 	}
 	
 	public function getRoutePrefix(){
@@ -28,6 +30,16 @@ class Prefix{
 	
 	public function removeResource($route){
 		unset($this->resources[$route]);
+	}
+	
+	public function addMiddleware($middleware){
+		$this->middlewares[] = $middleware;
+	}
+	
+	public function preRun(){
+		foreach($this->resources as $resource){
+			$resource->mergeMiddlewares($this->middlewares);
+		}
 	}
 	
 	public function getResource($route){

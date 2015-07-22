@@ -34,6 +34,11 @@ abstract class Resource{
 		return $this;
 	}
 	
+	public function mergeMiddlewares($middlewares){
+		$merged = array_merge($this->middlewares, $middlewares);
+		$this->middlewares = $merged;
+	}
+	
 	public function setMiddlewares($middlewares){
 		$this->middlewares = $middlewares;
 	}

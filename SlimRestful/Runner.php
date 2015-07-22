@@ -20,6 +20,7 @@ class Runner{
 		foreach($order as $routePrefix){
 			$prefix = $orderedPrefixes->getElement($routePrefix);
 			if(!is_null($prefix)){
+				$prefix->preRun();
 				$this->handlePrefix($slimApp, $prefix);
 			}
 		}
