@@ -1,7 +1,7 @@
 {
     "name": "alisonbnt/slim-restful",
     "type": "library",
-    "description": "Slim Framework based library for RESTful APIs over classes",
+    "description": "Slim Framework based library for RESTful APIs over classes (Based at Python, Flask and Flask-RESTful extension)",
     "homepage": "http://github.com/alisonbnt/slim-restful",
     "license": "MIT",
     "authors": [
