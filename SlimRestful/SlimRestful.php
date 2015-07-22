@@ -50,7 +50,7 @@ class SlimRestful{
 		if(is_null($prefix)){
 			return null;
 		}
-		
+
 		return $prefix->getResource($route);
 	}
 
@@ -64,25 +64,25 @@ class SlimRestful{
 		return $this;
 	}
 
-	private function addSRPrefix(Prefix $prefix){
-		$this->prefixes->addElement($prefix->getRoutePrefix(), $prefix);
-		$prefix->setSlimRestfulInstance($this);
-	}
-
 	public function changeRoutePrefix($oldRoutePrefix, $newRoutePrefix, $updatePrefixInstance = true){
 		$prefix = $this->prefixes->getElement($oldRoutePrefix);
 		if(is_null($prefix)){
 			return false;
 		}
-		
+
 		if($updatePrefixInstance){
 			$prefix->setRoutePrefix($newRoutePrefix, false);
 		}
-		
+
 		$this->prefixes->removeElement($oldRoutePrefix);
 		$this->prefixes->addSimpleElement($newRoutePrefix, $prefix);
 		$this->prefixes->updateOrderIndex($oldRoutePrefix, $newRoutePrefix);
 		return $this;
+	}
+
+	private function addSRPrefix(Prefix $prefix){
+		$this->prefixes->addElement($prefix->getRoutePrefix(), $prefix);
+		$prefix->setSlimRestfulInstance($this);
 	}
 
 }
