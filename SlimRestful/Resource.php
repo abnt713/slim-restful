@@ -76,4 +76,8 @@ abstract class Resource{
 		return $this;
 	}
 	
+	protected function render($template, $data = array()){
+		$this->getApp()->render($template, $data);
+	}
+	
 }
