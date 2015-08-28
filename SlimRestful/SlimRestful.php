@@ -6,10 +6,13 @@ class SlimRestful{
 
 	private $app;
 	private $prefixes;
+	private $rootPrefix;
 
 	public function __construct(\Slim\Slim $app){
 		$this->app = $app;
 		$this->prefixes = new \SlimRestful\Utils\OrderedArray();
+		$this->rootPrefix = new Prefix('');
+		$this->addSRPrefix($this->rootPrefix);
 	}
 
 	public function getSlimApp(){
@@ -24,7 +27,11 @@ class SlimRestful{
 		return $this->prefixes->getElements();
 	}
 
-	public function createPrefix($routePrefix){
+	public function prefix($routePrefix = ''){
+		if($routePrefix == ''){
+			return $this->rootPrefix;
+		}
+
 		$prefix = new Prefix($routePrefix);
 		$this->addSRPrefix($prefix);
 
@@ -80,8 +87,12 @@ class SlimRestful{
 		return $this;
 	}
 
+	public function addResource($route, Resource $resource){
+		$this->rootPrefix->addResource($route, $resource);
+	}
+
 	private function addSRPrefix(Prefix $prefix){
-		$this->prefixes->addElement($prefix->getRoutePrefix(), $prefix);
+		$this->prefixes->addElement($prefix->getRoute(), $prefix);
 		$prefix->setSlimRestfulInstance($this);
 	}
 
