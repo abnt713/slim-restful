@@ -19,6 +19,10 @@ class SlimRestful{
 		return $this->app;
 	}
 
+	public function getApp(){
+		return $this->getSlimApp();
+	}
+
 	public function getRawPrefixes(){
 		return $this->prefixes;
 	}
@@ -89,6 +93,10 @@ class SlimRestful{
 
 	public function addResource($route, Resource $resource){
 		$this->rootPrefix->addResource($route, $resource);
+	}
+
+	public function render($template, $data = array(), $status = null){
+		$this->app->render($template, $data, $status);
 	}
 
 	private function addSRPrefix(Prefix $prefix){
