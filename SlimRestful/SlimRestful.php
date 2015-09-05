@@ -95,10 +95,6 @@ class SlimRestful{
 		$this->rootPrefix->addResource($route, $resource);
 	}
 
-	public function render($template, $data = array(), $status = null){
-		$this->app->render($template, $data, $status);
-	}
-
 	private function addSRPrefix(Prefix $prefix){
 		$this->prefixes->addElement($prefix->getRoute(), $prefix);
 		$prefix->setSlimRestfulInstance($this);
