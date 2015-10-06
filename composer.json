@@ -1,12 +1,11 @@
 {
-    "name": "alisonbnt/slim-restful",
+    "name": "m4nolo/slim-restful",
     "type": "library",
     "description": "Slim Framework based library for RESTful APIs over classes (Based at Python, Flask and Flask-RESTful extension)",
-    "homepage": "http://github.com/alisonbnt/slim-restful",
     "license": "MIT",
     "authors": [
         {
-            "name": "Alison Bento",
+            "name": "Alison Bento 'M4nolo'",
             "email": "alisonbnt@gmail.com"
         }
     ],
